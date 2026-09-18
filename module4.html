@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4 — Phrases exclamatives | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 04 / 04</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 04</div>
+    <h1>Phrases exclamatives</h1>
+    <p>How.../What a.../So.../Such a... : structures et pièges classiques.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <table>
+      <tr><th>Structure</th><th>Emploi</th><th>Exemple</th></tr>
+      <tr>
+        <td><code>How + adjectif/adverbe (+ sujet + verbe)</code></td>
+        <td>Pas de nom après l'adjectif</td>
+        <td>How beautiful this garden is!</td>
+      </tr>
+      <tr>
+        <td><code>What + a/an + adjectif + nom dénombrable singulier</code></td>
+        <td>Article obligatoire au singulier</td>
+        <td>What a fantastic idea!</td>
+      </tr>
+      <tr>
+        <td><code>What + adjectif + nom pluriel/indénombrable</code></td>
+        <td>Pas d'article</td>
+        <td>What lovely weather!</td>
+      </tr>
+      <tr>
+        <td><code>So + adjectif/adverbe</code></td>
+        <td>Jamais suivi d'un nom directement</td>
+        <td>This project is so complicated!</td>
+      </tr>
+      <tr>
+        <td><code>Such + a/an + adjectif + nom dénombrable singulier</code></td>
+        <td>Article obligatoire au singulier</td>
+        <td>It was such a difficult exam.</td>
+      </tr>
+      <tr>
+        <td><code>Such + adjectif + nom pluriel/indénombrable</code></td>
+        <td>Pas d'article</td>
+        <td>They are such generous people.</td>
+      </tr>
+    </table>
+
+    <h3>Le piège principal</h3>
+    <p><strong>So</strong> ne peut jamais précéder directement un nom : « so a good idea » est incorrect, il faut <strong>such a good idea</strong>. En revanche, <code>so many / so much / so few / so little</code> sont des exceptions figées qui, elles, précèdent bien un nom sans passer par « such ».</p>
+    <p class="ex">He made so many mistakes that he failed the test. (pas « such many »)</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 12</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 12</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module3.html">&#9664; Module 03 : Génitif &amp; réciproques</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="index.html">Retour au menu &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  {
+    id:1,
+    before:"",
+    blanksMeta:[{ accepted:["How"], width:90, after:" beautiful this garden is!" }],
+    explanation:"Adjectif seul, sans nom qui suit directement : <strong>How</strong>."
+  },
+  {
+    id:2,
+    before:"",
+    blanksMeta:[{ accepted:["What"], width:90, after:" a fantastic idea!" }],
+    explanation:"Nom dénombrable singulier (« idea ») avec article « a » : <strong>What a</strong>."
+  },
+  {
+    id:3,
+    before:"This project is ",
+    blanksMeta:[{ accepted:["so"], width:80, after:" complicated!" }],
+    explanation:"Adjectif seul, sans nom : <strong>so</strong>."
+  },
+  {
+    id:4,
+    before:"It was ",
+    blanksMeta:[{ accepted:["such"], width:90, after:" a difficult exam that half the class failed." }],
+    explanation:"Nom dénombrable singulier (« exam ») avec article « a » : <strong>such a</strong>."
+  },
+  {
+    id:5,
+    before:"",
+    blanksMeta:[{ accepted:["What"], width:90, after:" nonsense!" }],
+    explanation:"« nonsense » est indénombrable, pas d'article : <strong>What</strong>."
+  },
+  {
+    id:6,
+    before:"She sings ",
+    blanksMeta:[{ accepted:["so"], width:80, after:" well!" }],
+    explanation:"Adverbe seul (« well »), sans nom : <strong>so</strong>."
+  },
+  {
+    id:7,
+    before:"",
+    blanksMeta:[{ accepted:["What"], width:90, after:" lovely weather we're having!" }],
+    explanation:"« weather » est indénombrable, pas d'article : <strong>What</strong>."
+  },
+  {
+    id:8,
+    before:"They are ",
+    blanksMeta:[{ accepted:["such"], width:90, after:" generous people." }],
+    explanation:"« people » est un nom pluriel, pas d'article : <strong>such</strong>."
+  },
+  {
+    id:9,
+    before:"",
+    blanksMeta:[{ accepted:["How"], width:90, after:" fast he runs!" }],
+    explanation:"Adverbe seul (« fast »), pas de nom : <strong>How</strong>."
+  },
+  {
+    id:10,
+    before:"It's ",
+    blanksMeta:[{ accepted:["such"], width:90, after:" a shame you couldn't come." }],
+    explanation:"Nom dénombrable singulier (« shame ») avec article « a » : <strong>such a</strong>."
+  },
+  {
+    id:11,
+    before:"",
+    blanksMeta:[{ accepted:["How"], width:90, after:" boring this lecture is!" }],
+    explanation:"Adjectif seul, sans nom qui suit directement : <strong>How</strong>."
+  },
+  {
+    id:12,
+    before:"He made ",
+    blanksMeta:[{ accepted:["so"], width:80, after:" many mistakes that he failed the test." }],
+    explanation:"Exception figée : <strong>so many</strong> (jamais « such many »)."
+  }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
