@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 2 — Have/Get something done | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 02 / 04</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 02</div>
+    <h1>Have / Get something done</h1>
+    <p>Le causatif : faire faire quelque chose par quelqu'un d'autre.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <h3>1. La structure</h3>
+    <p><code>sujet + have/get + objet + participe passé</code>. Le sujet ne fait pas l'action lui-même : il la fait faire par quelqu'un d'autre.</p>
+    <table>
+      <tr><th>Actif (je le fais moi-même)</th><th>Causatif (quelqu'un le fait pour moi)</th></tr>
+      <tr><td>I repaired my car.</td><td>I had my car repaired.</td></tr>
+      <tr><td>She cuts her own hair.</td><td>She has her hair cut.</td></tr>
+    </table>
+
+    <h3>2. Have ou Get ?</h3>
+    <p><code>have</code> est neutre et le plus courant. <code>get</code> est plus familier, insiste parfois sur l'effort ou la démarche pour obtenir le service.</p>
+
+    <h3>3. Le causatif se conjugue à n'importe quel temps</h3>
+    <table>
+      <tr><th>Temps</th><th>Exemple</th></tr>
+      <tr><td>Present Simple (routine)</td><td>He has his car serviced every year.</td></tr>
+      <tr><td>Present Continuous (ponctuel, en cours ou prévu)</td><td>We are having the roof inspected this week.</td></tr>
+      <tr><td>Past Simple</td><td>They had the report translated last month.</td></tr>
+      <tr><td>Future (will)</td><td>I will have the printer fixed tomorrow.</td></tr>
+    </table>
+    <p style="font-size:.88rem;color:var(--muted);">La nuance Present Simple (routine) vs Present Continuous (action ponctuelle) suit exactement la même logique que le Module 01, appliquée ici au causatif.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 12</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 12</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module1.html">&#9664; Module 01 : Les deux présents</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="module3.html">Module 03 : Génitif &amp; réciproques &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  {
+    id:1,
+    before:"We ",
+    blanksMeta:[{ accepted:["had"], width:100, after:" our software audited by an external firm last month." }],
+    explanation:"Marqueur « last month » : causatif au <strong>Past Simple : had</strong>."
+  },
+  {
+    id:2,
+    before:"She usually ",
+    blanksMeta:[{ accepted:["gets"], width:110, after:" her hair cut every six weeks." }],
+    explanation:"Routine régulière (« usually », « every six weeks ») : <strong>Present Simple : gets</strong>."
+  },
+  {
+    id:3,
+    before:"They ",
+    blanksMeta:[{ accepted:["will have"], width:130, after:" the machine repaired by a specialist tomorrow." }],
+    explanation:"Marqueur « tomorrow » : causatif au <strong>futur : will have</strong>."
+  },
+  {
+    id:4,
+    before:"I need to ",
+    blanksMeta:[{ accepted:["get"], width:90, after:" my passport renewed before the trip." }],
+    explanation:"Après « need to », base verbale : <strong>get</strong>."
+  },
+  {
+    id:5,
+    before:"The company ",
+    blanksMeta:[{ accepted:["is having"], width:140, after:" all its servers upgraded this weekend." }],
+    explanation:"Action ponctuelle et programmée (« this weekend ») : causatif au <strong>Present Continuous : is having</strong>."
+  },
+  {
+    id:6,
+    before:"He never fixes his own car. He always ",
+    blanksMeta:[{ accepted:["has"], width:100, after:" it serviced at the garage." }],
+    explanation:"Habitude (« always ») : causatif au <strong>Present Simple : has</strong>."
+  },
+  {
+    id:7,
+    before:"We ",
+    blanksMeta:[{ accepted:["had"], width:100, after:" the contract translated yesterday." }],
+    explanation:"Marqueur « yesterday » : causatif au <strong>Past Simple : had</strong>."
+  },
+  {
+    id:8,
+    before:"Don't worry about the printer, I'll ",
+    blanksMeta:[{ accepted:["have"], width:100, after:" it fixed this afternoon." }],
+    explanation:"Après le modal « I'll », base verbale : <strong>have</strong>."
+  },
+  {
+    id:9,
+    before:"Right now, they ",
+    blanksMeta:[{ accepted:["are having"], width:140, after:" the roof inspected after the storm." }],
+    explanation:"« Right now » : causatif ponctuel, <strong>Present Continuous : are having</strong>."
+  },
+  {
+    id:10,
+    before:"Every year, the school ",
+    blanksMeta:[{ accepted:["gets"], width:110, after:" its fire alarms tested." }],
+    explanation:"Routine annuelle (« every year ») : <strong>Present Simple : gets</strong>."
+  },
+  {
+    id:11,
+    before:"She ",
+    blanksMeta:[{ accepted:["is getting"], width:140, after:" her thesis proofread before submitting it next month." }],
+    explanation:"Plan déjà organisé pour le futur (« next month ») : <strong>Present Continuous à valeur de futur : is getting</strong>."
+  },
+  {
+    id:12,
+    before:"We ",
+    blanksMeta:[{ accepted:["have"], width:100, after:" our accounts audited every quarter." }],
+    explanation:"Routine trimestrielle (« every quarter ») : <strong>Present Simple : have</strong>."
+  }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
