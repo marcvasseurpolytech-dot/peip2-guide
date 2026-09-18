@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 8 — Voix passive | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 08 / 08</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 08</div>
+    <h1>Voix passive</h1>
+    <p>be + participe passé, à tous les temps : incontournable en anglais technique et scientifique.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <h3>1. Formation</h3>
+    <p><code>be (au temps voulu) + participe passé</code>. Le complément d'objet de la phrase active devient le sujet de la phrase passive.</p>
+    <p class="ex">A French company built this bridge. &rarr; This bridge was built by a French company.</p>
+
+    <h3>2. Le passif à tous les temps</h3>
+    <table>
+      <tr><th>Temps</th><th>Exemple</th></tr>
+      <tr><td>Present Simple</td><td>English is spoken in over 50 countries.</td></tr>
+      <tr><td>Present Continuous</td><td>The building is being renovated.</td></tr>
+      <tr><td>Past Simple</td><td>The prototype was tested extensively.</td></tr>
+      <tr><td>Present Perfect</td><td>The data has already been backed up.</td></tr>
+      <tr><td>Futur</td><td>The policy will be announced next week.</td></tr>
+      <tr><td>Modal + passif</td><td>The report must be submitted before Friday.</td></tr>
+    </table>
+
+    <h3>3. Pourquoi utiliser le passif ?</h3>
+    <p>Très fréquent en anglais technique/scientifique, quand l'auteur de l'action est inconnu, évident, ou simplement moins important que l'action ou l'objet elle-même. C'est pourquoi les rapports, notices et articles scientifiques en sont pleins.</p>
+    <p><code>by + agent</code> n'est ajouté que si l'auteur de l'action est une information utile.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 12</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 12</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module7.html">&#9664; Module 07 : Used to / would</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="index.html">Retour au menu &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  { id:1, before:"This machine ", blanksMeta:[{ accepted:["was designed"], width:130, after:" in Germany." }],
+    explanation:"Fait passé, sans marqueur temporel particulier mais évoqué comme achevé : <strong>Past Simple passif : was designed</strong>." },
+  { id:2, before:"The results ", blanksMeta:[{ accepted:["are being analyzed","are currently being analyzed"], width:250, after:" by the research team." }],
+    explanation:"Action en cours : <strong>Present Continuous passif : are being analyzed</strong> (be + being + participe passé)." },
+  { id:3, before:"The report ", blanksMeta:[{ accepted:["must be submitted"], width:180, after:" before Friday." }],
+    explanation:"Modal + passif : <strong>must + be + participe passé</strong> &rarr; <strong>must be submitted</strong>." },
+  { id:4, before:"Our data ", blanksMeta:[{ accepted:["has already been backed up","has been already backed up"], width:250, after:" on the cloud server." }],
+    explanation:"Present Perfect passif : <strong>has been + participe passé</strong> &rarr; <strong>has already been backed up</strong>." },
+  { id:5, before:"The new policy ", blanksMeta:[{ accepted:["will be announced"], width:180, after:" next week." }],
+    explanation:"Marqueur « next week » : <strong>futur passif : will be announced</strong>." },
+  { id:6, before:"English ", blanksMeta:[{ accepted:["is spoken"], width:130, after:" in more than 50 countries." }],
+    explanation:"Vérité générale : <strong>Present Simple passif : is spoken</strong>." },
+  { id:7, before:"The prototype ", blanksMeta:[{ accepted:["was tested"], width:130, after:" extensively before it reached the market." }],
+    explanation:"Fait passé achevé : <strong>Past Simple passif : was tested</strong>." },
+  { id:8, before:"Visitors ", blanksMeta:[{ accepted:["are not allowed"], width:170, after:" to enter without a badge." }],
+    explanation:"Règle générale, forme négative : <strong>Present Simple passif : are not allowed</strong>." },
+  { id:9, before:"The award ", blanksMeta:[{ accepted:["was given"], width:130, after:" to her by the director yesterday." }],
+    explanation:"Marqueur « yesterday » + agent précisé (« by the director ») : <strong>Past Simple passif : was given</strong>." },
+  { id:10, before:"The building ", blanksMeta:[{ accepted:["is being renovated"], width:200, after:" right now." }],
+    explanation:"« right now » : action en cours &rarr; <strong>Present Continuous passif : is being renovated</strong>." },
+  { id:11, before:"All applications ", blanksMeta:[{ accepted:["are reviewed"], width:150, after:" carefully before a decision is made." }],
+    explanation:"Procédure générale, routine : <strong>Present Simple passif : are reviewed</strong>." },
+  { id:12, before:"The machine ", blanksMeta:[{ accepted:["should be repaired"], width:180, after:" by tomorrow." }],
+    explanation:"Modal + passif : <strong>should + be + participe passé</strong> &rarr; <strong>should be repaired</strong>." }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
