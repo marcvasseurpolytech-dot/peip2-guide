@@ -98,6 +98,15 @@ main{max-width:840px;margin:0 auto;padding:36px 22px 90px;}
   content:'';position:absolute;top:0;left:0;right:0;height:5px;
   background:linear-gradient(90deg, var(--gold-dim), var(--gold-light));
 }
+.module-card.locked{
+  opacity:.55;filter:grayscale(.4);cursor:not-allowed;
+}
+.module-card.locked:hover{transform:none;box-shadow:var(--shadow);}
+.lock-badge{
+  position:absolute;top:14px;right:14px;
+  font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;
+  background:var(--navy);color:var(--cream);padding:3px 9px;border-radius:12px;
+}
 .module-card .num{
   font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gold-dim);
   letter-spacing:1.5px;font-weight:700;
