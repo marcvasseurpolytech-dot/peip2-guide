@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 — Les deux présents | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 01 / 04</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 01</div>
+    <h1>Les deux présents</h1>
+    <p>Present Simple vs Present Continuous : habitude, action en cours, verbes d'état.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <h3>1. Present Simple</h3>
+    <p>Habitudes, vérités générales, états permanents. Marqueurs fréquents : <code>always, usually, often, every day, on Mondays, never</code>.</p>
+    <p class="ex">Ex. : Our quality team checks samples every Friday.</p>
+
+    <h3>2. Present Continuous</h3>
+    <p>Action en cours au moment où l'on parle, situation temporaire. Marqueurs fréquents : <code>now, right now, at the moment, currently, these days</code>.</p>
+    <p class="ex">Ex. : The technician is repairing the printer right now.</p>
+
+    <h3>3. Verbes d'état (stative verbs)</h3>
+    <p>Certains verbes décrivent un état plutôt qu'une action, et restent normalement au Simple : <code>believe, know, understand, prefer, like, love, hate, want, need, belong, own, seem, remember, agree, mean</code>.</p>
+
+    <table>
+      <tr><th>Cas</th><th>Règle</th><th>Exemple</th></tr>
+      <tr>
+        <td><strong>think</strong> = opinion</td>
+        <td>Present Simple</td>
+        <td>He thinks the policy is unfair.</td>
+      </tr>
+      <tr>
+        <td><strong>think</strong> = réfléchir activement</td>
+        <td>Present Continuous</td>
+        <td>She is thinking about changing her major.</td>
+      </tr>
+      <tr>
+        <td><strong>be</strong> + attribut, trait permanent</td>
+        <td>Present Simple</td>
+        <td>He is a calm person.</td>
+      </tr>
+      <tr>
+        <td><strong>be</strong> + attribut, comportement ponctuel</td>
+        <td>Present Continuous</td>
+        <td>He is being very calm about it today (inhabituel).</td>
+      </tr>
+    </table>
+    <p style="font-size:.88rem;color:var(--muted);">Le causatif (<em>have something done</em>) est traité séparément dans le Module 02.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 15</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 15</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="index.html">&#9664; Retour au menu</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="module2.html">Module 02 : Have/Get something done &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  {
+    id:1,
+    before:"Our quality team ",
+    blanksMeta:[{ accepted:["checks"], width:110, after:" product samples every Friday." }],
+    explanation:"Habitude régulière (« every Friday ») : <strong>Present Simple : checks</strong>."
+  },
+  {
+    id:2,
+    before:"Look, the technician ",
+    blanksMeta:[{ accepted:["is repairing"], width:150, after:" the printer right now." }],
+    explanation:"Action en cours au moment où l'on parle (« right now ») : <strong>Present Continuous : is repairing</strong>."
+  },
+  {
+    id:3,
+    before:"I ",
+    blanksMeta:[{ accepted:["don't understand","do not understand"], width:190, after:" why the server keeps crashing." }],
+    explanation:"« understand » est un verbe d'état : toujours au <strong>Present Simple</strong>, jamais progressif &rarr; <strong>don't understand</strong>."
+  },
+  {
+    id:4,
+    before:"She ",
+    blanksMeta:[{ accepted:["is thinking"], width:140, after:" about changing her major this semester." }],
+    explanation:"« think about » = réfléchir activement à une décision : <strong>Present Continuous : is thinking</strong>."
+  },
+  {
+    id:5,
+    before:"He ",
+    blanksMeta:[{ accepted:["thinks"], width:110, after:" that the new policy is unfair." }],
+    explanation:"« think that » = avoir une opinion : <strong>Present Simple : thinks</strong>."
+  },
+  {
+    id:6,
+    before:"This equipment normally ",
+    blanksMeta:[{ accepted:["belongs"], width:120, after:" to the research lab." }],
+    explanation:"« belong » est un verbe d'état (appartenance) : <strong>Present Simple : belongs</strong>."
+  },
+  {
+    id:7,
+    before:"You ",
+    blanksMeta:[{ accepted:["are being"], width:140, after:" unusually nervous before this presentation." }],
+    explanation:"« unusually » + contexte ponctuel : comportement temporaire, pas un trait de caractère &rarr; <strong>Present Continuous : are being</strong>."
+  },
+  {
+    id:8,
+    before:"Our professor ",
+    blanksMeta:[{ accepted:["wants"], width:110, after:" us to submit the report by Friday." }],
+    explanation:"« want » est un verbe d'état : <strong>Present Simple : wants</strong>."
+  },
+  {
+    id:9,
+    before:"The engineers ",
+    blanksMeta:[{ accepted:["are currently testing","are testing"], width:210, after:" the new prototype in the wind tunnel." }],
+    explanation:"« currently » marque une action en cours : <strong>Present Continuous : are currently testing</strong>."
+  },
+  {
+    id:10,
+    before:"This cable ",
+    blanksMeta:[{ accepted:["doesn't fit","does not fit"], width:150, after:" the new connector." }],
+    explanation:"Fait général, vérité technique stable : <strong>Present Simple : doesn't fit</strong>."
+  },
+  {
+    id:11,
+    before:"I ",
+    blanksMeta:[{ accepted:["need"], width:100, after:" your signature on this form before noon." }],
+    explanation:"« need » est un verbe d'état : <strong>Present Simple : need</strong>."
+  },
+  {
+    id:12,
+    before:"Why ",
+    blanksMeta:[
+      { accepted:["is"], width:70, after:" he " },
+      { accepted:["behaving"], width:130, after:" so oddly today?" }
+    ],
+    explanation:"« today » indique un comportement ponctuel, pas habituel : <strong>Present Continuous : is ... behaving</strong>."
+  },
+  {
+    id:13,
+    before:"Most of our clients ",
+    blanksMeta:[{ accepted:["prefer"], width:120, after:" email over phone calls." }],
+    explanation:"« prefer » est un verbe d'état : <strong>Present Simple : prefer</strong>."
+  },
+  {
+    id:14,
+    before:"At the moment, the whole team ",
+    blanksMeta:[{ accepted:["is working"], width:140, after:" on the client's feedback." }],
+    explanation:"« At the moment » : action en cours &rarr; <strong>Present Continuous : is working</strong>."
+  },
+  {
+    id:15,
+    before:"He ",
+    blanksMeta:[{ accepted:["is being"], width:120, after:" surprisingly cooperative in this meeting, which is not like him." }],
+    explanation:"« which is not like him » : comportement inhabituel et temporaire &rarr; <strong>Present Continuous : is being</strong>."
+  }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
