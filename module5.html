@@ -73,6 +73,7 @@
 
 <footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
 
+<script src="access.js"></script>
 <script src="engine.js"></script>
 <script>
 const QUESTIONS = [
@@ -102,7 +103,7 @@ const QUESTIONS = [
     explanation:"« an increase in » : préposition fixe après ce nom &rarr; <strong>in</strong>." }
 ];
 
-PEIP2.init(QUESTIONS);
+PEIP2Access.guardModule(5, () => PEIP2.init(QUESTIONS));
 </script>
 
 </body>
