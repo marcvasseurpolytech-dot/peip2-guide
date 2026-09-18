@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 6 — Pronoms relatifs | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 06 / 08</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 06</div>
+    <h1>Pronoms relatifs</h1>
+    <p>who / which / that / whose : bien choisir, et savoir quand la virgule change tout.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <table>
+      <tr><th>Pronom</th><th>Emploi</th><th>Exemple</th></tr>
+      <tr><td><strong>who</strong></td><td>personnes, sujet ou objet</td><td>the engineer who designed this bridge</td></tr>
+      <tr><td><strong>which</strong></td><td>choses</td><td>the machine which broke down</td></tr>
+      <tr><td><strong>that</strong></td><td>personnes ou choses, dans une relative <em>déterminative</em> uniquement</td><td>the report that I mentioned</td></tr>
+      <tr><td><strong>whose</strong></td><td>possession (personnes ou choses)</td><td>the company whose profits doubled</td></tr>
+    </table>
+
+    <h3>Déterminative vs explicative</h3>
+    <p>Une relative <strong>déterminative</strong> (pas de virgule) apporte une information indispensable pour identifier de qui/quoi on parle. Une relative <strong>explicative</strong> (entre virgules) ajoute une information secondaire, non indispensable.</p>
+    <table>
+      <tr><td>Déterminative</td><td>Students who fail the exam must retake it. (sans cette relative, on ne sait pas de quels étudiants il s'agit)</td></tr>
+      <tr><td>Explicative</td><td>My colleague, who has worked here for 20 years, is retiring. (la relative est une info en plus, on sait déjà de qui on parle)</td></tr>
+    </table>
+    <p style="font-size:.88rem;color:var(--muted);"><strong>Piège</strong> : <code>that</code> ne s'utilise jamais après une virgule (jamais dans une relative explicative).</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 14</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 14</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module5.html">&#9664; Module 05 : Prépositions fixes</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="module7.html">Module 07 : Used to / would &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  { id:1, before:"The engineer ", blanksMeta:[{ accepted:["who","that"], width:70, after:" designed this bridge won an award." }],
+    explanation:"Sujet, personne, relative déterminative : <strong>who</strong> (ou <strong>that</strong>)." },
+  { id:2, before:"This is the report ", blanksMeta:[{ accepted:["that","which"], width:70, after:" I mentioned yesterday." }],
+    explanation:"Objet, chose, relative déterminative : <strong>that</strong> (ou <strong>which</strong>)." },
+  { id:3, before:"My colleague, ", blanksMeta:[{ accepted:["who"], width:60, after:" has worked here for 20 years, is retiring." }],
+    explanation:"Relative <strong>explicative</strong> (virgules) : « that » est impossible ici, seul <strong>who</strong> convient." },
+  { id:4, before:"The company, ", blanksMeta:[{ accepted:["whose"], width:70, after:" profits doubled last year, plans to expand." }],
+    explanation:"Possession (les profits DE l'entreprise) : <strong>whose</strong>." },
+  { id:5, before:"This is the machine ", blanksMeta:[{ accepted:["that","which"], width:70, after:" broke down yesterday." }],
+    explanation:"Sujet, chose, relative déterminative : <strong>that</strong> (ou <strong>which</strong>)." },
+  { id:6, before:"The article ", blanksMeta:[{ accepted:["that","which"], width:70, after:" was published last week caused controversy." }],
+    explanation:"Sujet, chose, relative déterminative : <strong>that</strong> (ou <strong>which</strong>)." },
+  { id:7, before:"Dr. Chen, ", blanksMeta:[{ accepted:["whose"], width:70, after:" research focuses on AI ethics, will give the keynote." }],
+    explanation:"Possession (la recherche DU Dr Chen) : <strong>whose</strong>." },
+  { id:8, before:"The project, ", blanksMeta:[{ accepted:["which"], width:70, after:" we have been working on for months, is finally complete." }],
+    explanation:"Relative <strong>explicative</strong> (virgules), chose : <strong>which</strong> uniquement, jamais « that »." },
+  { id:9, before:"Students ", blanksMeta:[{ accepted:["who","that"], width:70, after:" fail the exam will have to retake it." }],
+    explanation:"Sujet, personnes, relative déterminative : <strong>who</strong> (ou <strong>that</strong>)." },
+  { id:10, before:"This is the tool ", blanksMeta:[{ accepted:["that","which"], width:70, after:" engineers use every day." }],
+    explanation:"Objet, chose, relative déterminative : <strong>that</strong> (ou <strong>which</strong>)." },
+  { id:11, before:"The professor ", blanksMeta:[{ accepted:["whose"], width:70, after:" class I enjoyed most has just retired." }],
+    explanation:"Possession (le cours DU professeur) : <strong>whose</strong>." },
+  { id:12, before:"Anyone ", blanksMeta:[{ accepted:["who","that"], width:70, after:" wants to join the club should sign up here." }],
+    explanation:"Sujet, personne, relative déterminative : <strong>who</strong> (ou <strong>that</strong>)." },
+  { id:13, before:"We visited the factory ", blanksMeta:[{ accepted:["that","which"], width:70, after:" produces most of our components." }],
+    explanation:"Sujet, chose, relative déterminative : <strong>that</strong> (ou <strong>which</strong>)." },
+  { id:14, before:"The client, ", blanksMeta:[{ accepted:["whose"], width:70, after:" order was delayed, complained to customer service." }],
+    explanation:"Possession (la commande DU client), relative explicative : <strong>whose</strong>." }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
