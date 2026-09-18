@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 7 — Used to / would | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 07 / 08</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 07</div>
+    <h1>Used to / would</h1>
+    <p>Habitudes passées révolues : deux outils qui ne sont pas toujours interchangeables.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <table>
+      <tr><th>Forme</th><th>Emploi</th><th>Exemple</th></tr>
+      <tr><td><strong>used to</strong> + base verbale</td><td>Habitude ou <strong>état</strong> passé qui n'existe plus</td><td>She used to live in Berlin.</td></tr>
+      <tr><td><strong>would</strong> + base verbale</td><td>Habitude passée, <strong>action répétée uniquement</strong> (jamais un état)</td><td>My grandfather would tell us stories.</td></tr>
+    </table>
+
+    <h3>Le piège principal</h3>
+    <p><strong>would</strong> ne peut jamais décrire un état (avoir, être, aimer, croire, habiter...) au passé habituel : seul <strong>used to</strong> le peut.</p>
+    <table>
+      <tr><td>❌ This town would have a cinema.</td><td>✅ This town used to have a cinema.</td></tr>
+      <tr><td>✅ Les deux fonctionnent pour une action répétée :</td><td>Every summer, we would/used to spend two weeks there.</td></tr>
+    </table>
+
+    <h3>Attention au faux ami : be used to / get used to</h3>
+    <p><code>be used to + -ing</code> ne parle pas du tout d'habitude passée : ça signifie « être habitué à » (au présent). <code>get used to + -ing</code> signifie « s'habituer à » (processus en cours).</p>
+    <p class="ex">I'm used to working under pressure. (j'y suis habitué, maintenant) / It took her months to get used to the night shifts.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 12</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 12</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module6.html">&#9664; Module 06 : Pronoms relatifs</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="module8.html">Module 08 : Voix passive &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  { id:1, before:"She ", blanksMeta:[{ accepted:["used to"], width:100, after:" live in Berlin before moving here." }],
+    explanation:"« live » est un état : seul <strong>used to</strong> convient, « would » est impossible avec un état." },
+  { id:2, before:"Every summer, we ", blanksMeta:[{ accepted:["would","used to"], width:110, after:" spend two weeks at my grandparents' house." }],
+    explanation:"Action répétée (pas un état) : <strong>would</strong> ou <strong>used to</strong> conviennent tous les deux." },
+  { id:3, before:"He ", blanksMeta:[{ accepted:["used to"], width:100, after:" have really long hair when he was younger." }],
+    explanation:"« have » (possession/caractéristique) est un état : seul <strong>used to</strong> convient." },
+  { id:4, before:"I'm not ", blanksMeta:[{ accepted:["used to"], width:100, after:" getting up this early; it's exhausting." }],
+    explanation:"« be used to + -ing » = être habitué à (présent, pas une habitude passée) : <strong>used to</strong>." },
+  { id:5, before:"It took her months to get ", blanksMeta:[{ accepted:["used to"], width:100, after:" working night shifts." }],
+    explanation:"« get used to + -ing » = s'habituer à (processus) : <strong>used to</strong>." },
+  { id:6, before:"My grandfather ", blanksMeta:[{ accepted:["would","used to"], width:110, after:" tell us the same stories every Christmas." }],
+    explanation:"Action répétée : <strong>would</strong> (ou <strong>used to</strong>)." },
+  { id:7, before:"They ", blanksMeta:[{ accepted:["used to"], width:100, after:" believe the earth was flat." }],
+    explanation:"« believe » est un état mental : seul <strong>used to</strong> convient." },
+  { id:8, before:"We ", blanksMeta:[{ accepted:["would","used to"], width:110, after:" often argue about politics after dinner." }],
+    explanation:"Action répétée : <strong>would</strong> (ou <strong>used to</strong>)." },
+  { id:9, before:"This town ", blanksMeta:[{ accepted:["used to"], width:100, after:" have a cinema, but it closed years ago." }],
+    explanation:"« have » (existence) est un état : seul <strong>used to</strong> convient, jamais « would »." },
+  { id:10, before:"After a few weeks, he got ", blanksMeta:[{ accepted:["used to"], width:100, after:" the new software." }],
+    explanation:"« get used to » = s'habituer à : <strong>used to</strong>." },
+  { id:11, before:"She ", blanksMeta:[{ accepted:["would","used to"], width:110, after:" always arrive exactly on time." }],
+    explanation:"Comportement répété (action) : <strong>would</strong> (ou <strong>used to</strong>)." },
+  { id:12, before:"I'm ", blanksMeta:[{ accepted:["used to"], width:100, after:" working under pressure by now, after years in this job." }],
+    explanation:"« be used to + -ing » = être habitué à (état présent) : <strong>used to</strong>." }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
