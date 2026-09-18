@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 5 — Prépositions fixes | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 05 / 08</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 05</div>
+    <h1>Prépositions fixes après adjectifs/noms</h1>
+    <p>interested in, good at, responsible for... : des associations à mémoriser, pas à traduire du français.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+    <p>Beaucoup d'adjectifs et de noms anglais s'emploient avec une préposition fixe, qui ne correspond pas toujours à la préposition française équivalente. Il faut les apprendre comme des blocs, pas les déduire par traduction.</p>
+
+    <h3>1. Adjectif + préposition</h3>
+    <table>
+      <tr><th>Adjectif</th><th>Préposition</th><th>Exemple</th></tr>
+      <tr><td>interested</td><td>in</td><td>interested in technology</td></tr>
+      <tr><td>good / bad</td><td>at</td><td>good at maths</td></tr>
+      <tr><td>responsible</td><td>for</td><td>responsible for the team</td></tr>
+      <tr><td>proud</td><td>of</td><td>proud of the results</td></tr>
+      <tr><td>similar</td><td>to</td><td>similar to the original</td></tr>
+      <tr><td>different</td><td>from</td><td>different from the others</td></tr>
+      <tr><td>aware / capable / tired</td><td>of</td><td>aware of the risks</td></tr>
+      <tr><td>satisfied</td><td>with</td><td>satisfied with the service</td></tr>
+      <tr><td>worried</td><td>about</td><td>worried about the deadline</td></tr>
+    </table>
+
+    <h3>2. Nom + préposition</h3>
+    <table>
+      <tr><th>Nom</th><th>Préposition</th><th>Exemple</th></tr>
+      <tr><td>interest / increase / decrease</td><td>in</td><td>an increase in demand</td></tr>
+      <tr><td>reason / need / solution</td><td>for</td><td>a solution for the problem</td></tr>
+      <tr><td>access</td><td>to</td><td>access to the database</td></tr>
+      <tr><td>effect</td><td>on</td><td>an effect on productivity</td></tr>
+    </table>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 12</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 12</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module4.html">&#9664; Module 04 : Exclamatives</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="module6.html">Module 06 : Pronoms relatifs &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  { id:1, before:"She is very interested ", blanksMeta:[{ accepted:["in"], width:60, after:" renewable energy technologies." }],
+    explanation:"« interested in » : préposition fixe après cet adjectif &rarr; <strong>in</strong>." },
+  { id:2, before:"He's always been good ", blanksMeta:[{ accepted:["at"], width:60, after:" solving technical problems." }],
+    explanation:"« good at » : préposition fixe pour exprimer une compétence &rarr; <strong>at</strong>." },
+  { id:3, before:"The manager is responsible ", blanksMeta:[{ accepted:["for"], width:60, after:" the whole project." }],
+    explanation:"« responsible for » : préposition fixe &rarr; <strong>for</strong>." },
+  { id:4, before:"We are extremely proud ", blanksMeta:[{ accepted:["of"], width:60, after:" our engineering team's results." }],
+    explanation:"« proud of » : préposition fixe &rarr; <strong>of</strong>." },
+  { id:5, before:"This new model is quite similar ", blanksMeta:[{ accepted:["to"], width:60, after:" the previous version." }],
+    explanation:"« similar to » : préposition fixe &rarr; <strong>to</strong>." },
+  { id:6, before:"Her approach is completely different ", blanksMeta:[{ accepted:["from"], width:70, after:" her colleague's." }],
+    explanation:"« different from » : préposition fixe (« different than » existe en anglais américain informel, mais « from » reste la forme standard) &rarr; <strong>from</strong>." },
+  { id:7, before:"Are you aware ", blanksMeta:[{ accepted:["of"], width:60, after:" the new safety regulations?" }],
+    explanation:"« aware of » : préposition fixe &rarr; <strong>of</strong>." },
+  { id:8, before:"The system is capable ", blanksMeta:[{ accepted:["of"], width:60, after:" processing thousands of requests per second." }],
+    explanation:"« capable of » : préposition fixe, suivie d'un gérondif &rarr; <strong>of</strong>." },
+  { id:9, before:"I'm getting a bit tired ", blanksMeta:[{ accepted:["of"], width:60, after:" these constant delays." }],
+    explanation:"« tired of » : préposition fixe &rarr; <strong>of</strong>." },
+  { id:10, before:"Most clients seem satisfied ", blanksMeta:[{ accepted:["with"], width:70, after:" the new interface." }],
+    explanation:"« satisfied with » : préposition fixe &rarr; <strong>with</strong>." },
+  { id:11, before:"The whole team is worried ", blanksMeta:[{ accepted:["about"], width:80, after:" the upcoming deadline." }],
+    explanation:"« worried about » : préposition fixe &rarr; <strong>about</strong>." },
+  { id:12, before:"There has been a sharp increase ", blanksMeta:[{ accepted:["in"], width:60, after:" energy consumption this winter." }],
+    explanation:"« an increase in » : préposition fixe après ce nom &rarr; <strong>in</strong>." }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
