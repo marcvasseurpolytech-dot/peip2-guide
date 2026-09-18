@@ -68,6 +68,7 @@
 
 <footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
 
+<script src="access.js"></script>
 <script src="engine.js"></script>
 <script>
 const QUESTIONS = [
@@ -97,7 +98,7 @@ const QUESTIONS = [
     explanation:"Modal + passif : <strong>should + be + participe passé</strong> &rarr; <strong>should be repaired</strong>." }
 ];
 
-PEIP2.init(QUESTIONS);
+PEIP2Access.guardModule(8, () => PEIP2.init(QUESTIONS));
 </script>
 
 </body>
