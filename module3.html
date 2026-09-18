@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3 — Génitif &amp; pronoms réciproques | PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Module 03 / 04</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Module 03</div>
+    <h1>Génitif &amp; pronoms réciproques/réfléchis</h1>
+    <p>'s vs of, each other/one another, myself/yourself... trois pièges classiques.</p>
+  </div>
+
+  <div class="course">
+    <h2>Le cours</h2>
+
+    <h3>1. Le génitif : 's ou of ?</h3>
+    <table>
+      <tr><th>Cas</th><th>Règle</th><th>Exemple</th></tr>
+      <tr><td>Personnes, animaux</td><td><code>possesseur + 's + possédé</code></td><td>my brother's car</td></tr>
+      <tr><td>Pluriel en -s</td><td>apostrophe seule</td><td>the students' results</td></tr>
+      <tr><td>Pluriel irrégulier</td><td><code>'s</code> comme au singulier</td><td>the children's bus</td></tr>
+      <tr><td>Choses, notions abstraites</td><td><code>of</code></td><td>the results of the experiment</td></tr>
+      <tr><td>Génitif double</td><td><code>a/an + nom + of + possessif</code></td><td>a friend of mine</td></tr>
+    </table>
+
+    <h3>2. Each other / One another</h3>
+    <p>Pour une action <strong>mutuelle</strong> entre deux personnes ou plus : <code>each other</code> et <code>one another</code> sont interchangeables en anglais courant (la distinction « each other = deux, one another = plus de deux » est une règle d'école, rarement respectée à l'oral).</p>
+    <p class="ex">They know each other. / The team members respect one another.</p>
+
+    <h3>3. Pronoms réfléchis (-self / -selves)</h3>
+    <p>Utilisés quand le sujet et l'objet désignent la même personne : <code>myself, yourself, himself, herself, itself, ourselves, yourselves, themselves</code>.</p>
+    <p><strong>Piège fréquent</strong> : contrairement au français (« se laver », « se raser »), l'anglais n'utilise généralement <strong>pas</strong> de pronom réfléchi avec les verbes de toilette quotidienne (<code>wash, shave, dress</code>) sauf pour insister.</p>
+    <table>
+      <tr><td>❌ I wash myself every morning.</td><td>✅ I wash every morning.</td></tr>
+      <tr><td>Correct seulement pour insister :</td><td>He shaved himself with a straight razor, without any help.</td></tr>
+    </table>
+    <p>Expressions figées à connaître : <code>enjoy yourself, help yourself, teach yourself, by myself (= alone)</code>.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <span class="label">Progression</span>
+      <span class="score" id="scoreLabel">0 / 14</span>
+    </div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+
+  <div id="questionsArea"></div>
+
+  <div class="completion" id="completionBanner">
+    <div>Bilan du module</div>
+    <div class="big" id="completionScore">0 / 14</div>
+    <div class="msg" id="completionMsg"></div>
+  </div>
+
+  <div class="pagenav">
+    <a href="module2.html">&#9664; Module 02 : Have/Get something done</a>
+    <a href="#" class="reset" onclick="location.reload();return false;">Recommencer ce module</a>
+    <a href="module4.html">Module 04 : Exclamatives &#9654;</a>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script src="engine.js"></script>
+<script>
+const QUESTIONS = [
+  {
+    id:1,
+    before:"The ",
+    blanksMeta:[{ accepted:["children's bus"], width:170, after:" arrived ten minutes late. (bus / children)" }],
+    explanation:"Pluriel irrégulier (children) : génitif en <strong>'s</strong>, comme au singulier &rarr; <strong>children's bus</strong>."
+  },
+  {
+    id:2,
+    before:"The ",
+    blanksMeta:[{ accepted:["results of the experiment"], width:250, after:" surprised everyone in the room. (the experiment / results)" }],
+    explanation:"Possesseur inanimé (une expérience, pas une personne) : on utilise <strong>of</strong> &rarr; <strong>results of the experiment</strong>."
+  },
+  {
+    id:3,
+    before:"The ",
+    blanksMeta:[{ accepted:["company's profits"], width:180, after:" increased by 12% last year. (the company / profits)" }],
+    explanation:"Possesseur = une organisation assimilée à un groupe de personnes : génitif en <strong>'s</strong> &rarr; <strong>company's profits</strong>."
+  },
+  {
+    id:4,
+    before:"The ",
+    blanksMeta:[{ accepted:["roof of the building"], width:210, after:" was destroyed in the fire. (the building / roof)" }],
+    explanation:"Possesseur inanimé (un bâtiment) : <strong>of</strong> &rarr; <strong>roof of the building</strong>."
+  },
+  {
+    id:5,
+    before:"I borrowed a book from ",
+    blanksMeta:[{ accepted:["a friend of mine"], width:180, after:". (a friend / mine)" }],
+    explanation:"Génitif double : <code>a + nom + of + possessif</code> &rarr; <strong>a friend of mine</strong>."
+  },
+  {
+    id:6,
+    before:"My two colleagues always help ",
+    blanksMeta:[{ accepted:["each other","one another"], width:130, after:" before a deadline." }],
+    explanation:"Action mutuelle entre deux personnes : <strong>each other</strong> (ou <strong>one another</strong>, les deux sont acceptés en anglais courant)."
+  },
+  {
+    id:7,
+    before:"All five team members respect ",
+    blanksMeta:[{ accepted:["one another","each other"], width:130, after:" deeply." }],
+    explanation:"Action mutuelle entre plusieurs personnes : <strong>one another</strong> (ou <strong>each other</strong>)."
+  },
+  {
+    id:8,
+    before:"We've known ",
+    blanksMeta:[{ accepted:["each other","one another"], width:130, after:" since university." }],
+    explanation:"Réciprocité entre deux personnes : <strong>each other</strong>."
+  },
+  {
+    id:9,
+    before:"The three departments rarely communicate with ",
+    blanksMeta:[{ accepted:["one another","each other"], width:130, after:"." }],
+    explanation:"Réciprocité entre plus de deux entités : <strong>one another</strong>."
+  },
+  {
+    id:10,
+    before:"He accidentally cut ",
+    blanksMeta:[{ accepted:["himself"], width:110, after:" while repairing the machine." }],
+    explanation:"Le sujet subit vraiment l'action qu'il a causée : pronom réfléchi nécessaire &rarr; <strong>himself</strong>."
+  },
+  {
+    id:11,
+    before:"I ",
+    blanksMeta:[{ accepted:["wash"], width:100, after:" every morning before work. (wash)" }],
+    explanation:"Piège classique : contrairement au français « se laver », l'anglais courant n'ajoute <strong>pas</strong> de pronom réfléchi avec « wash » &rarr; <strong>wash</strong> (pas « wash myself »)."
+  },
+  {
+    id:12,
+    before:"Did you enjoy ",
+    blanksMeta:[{ accepted:["yourself","yourselves"], width:120, after:" at the conference?" }],
+    explanation:"Expression figée : <strong>enjoy yourself/yourselves</strong> (passer un bon moment)."
+  },
+  {
+    id:13,
+    before:"She taught ",
+    blanksMeta:[{ accepted:["herself"], width:110, after:" how to code before starting her degree." }],
+    explanation:"« teach oneself » = apprendre en autodidacte : pronom réfléchi nécessaire &rarr; <strong>herself</strong>."
+  },
+  {
+    id:14,
+    before:"Please help ",
+    blanksMeta:[{ accepted:["yourself","yourselves"], width:120, after:" to some coffee." }],
+    explanation:"Expression figée : <strong>help yourself/yourselves</strong> (se servir)."
+  }
+];
+
+PEIP2.init(QUESTIONS);
+</script>
+
+</body>
+</html>
