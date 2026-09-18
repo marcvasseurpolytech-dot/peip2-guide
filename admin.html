@@ -17,13 +17,19 @@
   <div class="hero" style="padding-top:20px;">
     <div class="kicker">Administration</div>
     <h1>Ouverture des modules</h1>
-    <p>Mot de passe requis pour enregistrer. Chaque module peut être ouvert immédiatement, fermé, ou programmé à une date.</p>
+    <p id="heroSub">Connexion requise.</p>
   </div>
 
-  <div class="course">
+  <div class="course" id="loginPanel">
     <label style="display:block;margin-bottom:8px;font-weight:600;">Mot de passe administrateur</label>
-    <input type="password" id="pwd" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-family:'Source Serif 4',serif;font-size:1rem;margin-bottom:20px;">
+    <input type="password" id="loginPwd" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-family:'Source Serif 4',serif;font-size:1rem;margin-bottom:16px;">
+    <div style="text-align:center;">
+      <button class="btn-check" id="loginBtn" style="font-size:1rem;padding:12px 30px;">Se connecter</button>
+    </div>
+    <div id="loginMsg" style="text-align:center;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.85rem;"></div>
+  </div>
 
+  <div class="course" id="adminPanel" style="display:none;">
     <label style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
       <input type="checkbox" id="globalClosed" style="width:18px;height:18px;">
       <span><strong>Fermer tout le guide</strong> (prioritaire sur les réglages individuels ci-dessous)</span>
@@ -49,6 +55,7 @@ const MODULE_NAMES = {
 };
 
 let currentAccess = null;
+let sessionPwd = null;
 
 function toLocalInputValue(iso){
   const d = new Date(iso);
@@ -93,13 +100,44 @@ function readModules(){
   return out;
 }
 
+async function attemptLogin(){
+  const msgEl = document.getElementById('loginMsg');
+  const pwd = document.getElementById('loginPwd').value;
+  if(!pwd){ return; }
+  msgEl.textContent = 'Vérification…';
+  msgEl.style.color = 'var(--muted)';
+  try {
+    const res = await fetch('/api/verify-password', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ password: pwd })
+    });
+    const j = await res.json();
+    if(res.ok && j.ok){
+      sessionPwd = pwd;
+      document.getElementById('loginPanel').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      document.getElementById('heroSub').textContent = 'Chaque module peut être ouvert immédiatement, fermé, ou programmé à une date.';
+      await loadAccess();
+    } else {
+      msgEl.textContent = 'Mot de passe incorrect.';
+      msgEl.style.color = 'var(--bad)';
+    }
+  } catch(e){
+    msgEl.textContent = 'Erreur réseau : ' + e.message;
+    msgEl.style.color = 'var(--bad)';
+  }
+}
+
+document.getElementById('loginBtn').addEventListener('click', attemptLogin);
+document.getElementById('loginPwd').addEventListener('keydown', e=>{ if(e.key==='Enter') attemptLogin(); });
+
 document.getElementById('reloadBtn').addEventListener('click', loadAccess);
 
 document.getElementById('saveBtn').addEventListener('click', async ()=>{
   const statusEl = document.getElementById('statusMsg');
   statusEl.textContent = 'Enregistrement…';
   const payload = {
-    password: document.getElementById('pwd').value,
+    password: sessionPwd,
     closed: document.getElementById('globalClosed').checked,
     modules: readModules()
   };
@@ -121,8 +159,6 @@ document.getElementById('saveBtn').addEventListener('click', async ()=>{
     statusEl.style.color = 'var(--bad)';
   }
 });
-
-loadAccess();
 </script>
 
 </body>
