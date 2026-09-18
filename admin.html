@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administration — PEIP2 Guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="brand"><span class="crest">P2</span><span>PEIP2 Guide</span></a>
+  <span class="tagline">Administration</span>
+</div>
+
+<main>
+  <div class="hero" style="padding-top:20px;">
+    <div class="kicker">Administration</div>
+    <h1>Ouverture des modules</h1>
+    <p>Mot de passe requis pour enregistrer. Chaque module peut être ouvert immédiatement, fermé, ou programmé à une date.</p>
+  </div>
+
+  <div class="course">
+    <label style="display:block;margin-bottom:8px;font-weight:600;">Mot de passe administrateur</label>
+    <input type="password" id="pwd" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-family:'Source Serif 4',serif;font-size:1rem;margin-bottom:20px;">
+
+    <label style="display:flex;align-items:center;gap:10px;margin-bottom:22px;">
+      <input type="checkbox" id="globalClosed" style="width:18px;height:18px;">
+      <span><strong>Fermer tout le guide</strong> (prioritaire sur les réglages individuels ci-dessous)</span>
+    </label>
+
+    <div id="moduleRows"></div>
+
+    <div style="text-align:center;margin-top:24px;">
+      <button class="btn-check" id="saveBtn" style="font-size:1rem;padding:12px 30px;">Enregistrer</button>
+      <button class="btn-check" id="reloadBtn" style="font-size:1rem;padding:12px 30px;background:transparent;color:var(--navy);border-color:var(--navy);">Recharger l'état actuel</button>
+    </div>
+    <div id="statusMsg" style="text-align:center;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.85rem;"></div>
+  </div>
+</main>
+
+<footer>Marc VASSEUR &middot; marc.vasseur@polytech-lille.fr &middot; Polytech Lille &middot; PEIP2 Guide</footer>
+
+<script>
+const MODULE_NAMES = {
+  1: "Les deux présents", 2: "Have/Get something done", 3: "Génitif & réciproques",
+  4: "Phrases exclamatives", 5: "Prépositions fixes", 6: "Pronoms relatifs",
+  7: "Used to / would", 8: "Voix passive"
+};
+
+let currentAccess = null;
+
+function toLocalInputValue(iso){
+  const d = new Date(iso);
+  const pad = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function renderRows(){
+  const wrap = document.getElementById('moduleRows');
+  wrap.innerHTML = Object.keys(MODULE_NAMES).map(id=>{
+    const m = currentAccess.modules[id] || {unlocked:false, unlock_date:null};
+    const dtVal = m.unlock_date ? toLocalInputValue(m.unlock_date) : '';
+    return `
+      <div class="q-card" data-id="${id}" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font-family:'JetBrains Mono',monospace;font-weight:700;min-width:26px;">${id}</span>
+        <span style="min-width:220px;font-weight:600;">${MODULE_NAMES[id]}</span>
+        <label style="display:flex;align-items:center;gap:6px;">
+          <input type="checkbox" class="chk-unlock" ${m.unlocked?'checked':''}> Ouvert
+        </label>
+        <input type="datetime-local" class="dt-unlock" value="${dtVal}">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);">${m.unlock_date ? 'dès le ' + new Date(m.unlock_date).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}) : 'immédiat si coché'}</span>
+      </div>`;
+  }).join('');
+}
+
+async function loadAccess(){
+  const r = await fetch('access.json?_=' + Date.now());
+  currentAccess = await r.json();
+  document.getElementById('globalClosed').checked = !!currentAccess.closed;
+  renderRows();
+}
+
+function readModules(){
+  const rows = document.querySelectorAll('#moduleRows .q-card');
+  const out = {};
+  rows.forEach(row=>{
+    const id = row.dataset.id;
+    const unlocked = row.querySelector('.chk-unlock').checked;
+    const dtVal = row.querySelector('.dt-unlock').value;
+    out[id] = { unlocked, unlock_date: dtVal ? new Date(dtVal).toISOString() : null };
+  });
+  return out;
+}
+
+document.getElementById('reloadBtn').addEventListener('click', loadAccess);
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('statusMsg');
+  statusEl.textContent = 'Enregistrement…';
+  const payload = {
+    password: document.getElementById('pwd').value,
+    closed: document.getElementById('globalClosed').checked,
+    modules: readModules()
+  };
+  try {
+    const res = await fetch('/api/update-access', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(res.ok){
+      statusEl.textContent = 'Enregistré avec succès.';
+      statusEl.style.color = 'var(--ok)';
+    } else {
+      const t = await res.text();
+      statusEl.textContent = 'Erreur : ' + t;
+      statusEl.style.color = 'var(--bad)';
+    }
+  } catch(e){
+    statusEl.textContent = 'Erreur réseau : ' + e.message;
+    statusEl.style.color = 'var(--bad)';
+  }
+});
+
+loadAccess();
+</script>
+
+</body>
+</html>
