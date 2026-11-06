@@ -3,7 +3,7 @@
 const PEIP2Access = (function(){
 
   async function fetchAccess(){
-    const r = await fetch('access.json?_=' + Date.now());
+    const r = await fetch('https://raw.githubusercontent.com/marcvasseurpolytech-dot/peip2-guide/data/access.json?_=' + Date.now());
     if(!r.ok) throw new Error('access.json fetch failed');
     return r.json();
   }

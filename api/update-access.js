@@ -23,8 +23,10 @@ module.exports = async (req, res) => {
     const token = process.env.GITHUB_TOKEN;
     const repo = process.env.GITHUB_REPO; // "marcvasseurpolytech-dot/peip2-guide"
     const filePath = 'access.json';
+    // Dedicated branch: writes must not trigger a production deploy.
+    const BRANCH = 'data';
 
-    const getResp = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}`, {
+    const getResp = await fetch(`https://api.github.com/repos/${repo}/contents/${filePath}?ref=${BRANCH}`, {
       headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github+json' }
     });
     if (!getResp.ok) {
@@ -47,7 +49,8 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         message: 'Update access.json via admin panel',
         content,
-        sha
+        sha,
+        branch: BRANCH
       })
     });
 

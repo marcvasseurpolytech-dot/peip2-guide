@@ -82,7 +82,7 @@ function renderRows(){
 }
 
 async function loadAccess(){
-  const r = await fetch('access.json?_=' + Date.now());
+  const r = await fetch('https://raw.githubusercontent.com/marcvasseurpolytech-dot/peip2-guide/data/access.json?_=' + Date.now());
   currentAccess = await r.json();
   document.getElementById('globalClosed').checked = !!currentAccess.closed;
   renderRows();
